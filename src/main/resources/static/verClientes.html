@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="estilos.css">
+
+    <title>Ver Clientes</title>
+</head>
+<style>
+    table, th, td{
+        border: 1px solid;
+        padding: 8px;
+    }
+    .success-message{
+        color: green;
+        font-weight: bold;
+    }
+    .fail-message{
+        color: red;
+        font-weight: bold;
+    }
+</style>
+<body>
+    <h1>Ver Clientes</h1>
+    <p id="estatus" style="font-size: 20px">Mostrando la tabla de clientes</p>
+    <table id="clientTable">
+        <thead>
+        <tr>
+            <th>Código</th>
+            <th>Correo</th>
+            <th>Nombre</th>
+            <th>Sexo</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Fecha de Orden</th>
+            <th>Editar</th>
+            <th>Borrar</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div class="buttons">
+        <br><a href="http://localhost:8080/index.html" class="a">Regresar al inicio</a><br>
+        <br><a href="http://localhost:8080/registro.html" class="a">Registrar</a><br></div>
+</body>
+<script>
+    loadTable();
+    function loadTable(){
+        fetch('http://localhost:8080/client')
+            .then(response => response.json())
+            .then(data => {
+                const clientTable = document.getElementById('clientTable');
+                const tbody = clientTable.getElementsByTagName('tbody')[0];
+                //limpia la tabla
+                tbody.innerHTML = '';
+                // Recorre los datos y agrega cada fila a la tabla
+                data.forEach(client => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                <td>${client.code}</td>
+                <td>${client.mail}</td>
+                <td>${client.name}</td>
+                <td>${client.sex}</td>
+                <td>${client.phone}</td>
+                <td>${client.address}</td>
+                <td>${client.birthday}</td>
+                <td>${client.dateOrder}</td>
+                <td><a href="#" onclick="editClient('${client.code}')">Editar</a></td>
+                <td><a href="#" onclick="deleteClient('${client.code}')">Borrar</a></td>
+    `;
+                    tbody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('Error al cargar los datos:', error);
+            });
+    }
+
+    function editClient(code) {
+        console.log('Redirigiendo a la pagina de edicion');
+        // Redirige a la página de edición usando el codido
+        window.location.href = `http://localhost:8080/editarCliente.html?code=${code}`;
+    }
+
+    function deleteClient(code) {
+        if (confirm("¿Estás seguro de que deseas eliminar este cliente?")) {
+            fetch(`http://localhost:8080/client/${code}`, {
+                method:'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        estatus.innerHTML= "Cliente eliminado";
+                        estatus.classList.add("success-message");
+                        loadTable();
+                    } else {
+                        console.error('Error al eliminar el cliente');
+                        estatus.innerHTML= "Error al eliminar";
+                        estatus.classList.add("fail-message");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al eliminar el cliente:', error);
+                    estatus.innerHTML= "Error al eliminar";
+                    estatus.classList.add("fail-message");
+                });
+        }
+    }
+</script>
+</html>

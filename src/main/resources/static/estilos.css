@@ -1,0 +1,105 @@
+@font-face {
+    font-family: 'Kanit';
+    src: url(https://fonts.google.com/specimen/Kanit);
+}
+
+body{
+    background-color: #043763;
+}
+
+body h1{
+    font-family: 'Kanit', Arial, Helvetica, sans-serif;
+    font-size: 45px;
+    font-weight: 850;
+    font-style: italic;
+    color: #F2CB05;
+    -webkit-text-stroke: 2.5px #8C6A03;
+    text-align: center;
+    
+    background-color: #051829;
+    border: solid 3.5px #030d16;
+    border-radius: 15px;
+    box-shadow: 20px 25px 50px black;
+}
+
+body form{
+    
+    text-align: center;
+    font-family: 'Kanit', Arial, Helvetica, sans-serif;
+    font-style: italic;
+    
+    box-shadow: 20px 40px 50px black;
+    border-radius: 40px;
+    background-color: rgba(240, 248, 255, 0.084);
+}
+
+#estatus{
+    font-family: 'Kanit', Arial, Helvetica, sans-serif;
+    font-style: italic;
+    text-align: center;
+
+
+    
+    background-color: #2a4d6b;
+    border: solid 2.5px #12324e;
+    border-radius: 10px;
+    margin: 0 35% 0 35%;
+    box-shadow: 20px 25px 50px black;
+}
+
+#clientTable{
+    margin: auto;
+    background-color: #234563ad;
+    box-shadow: 20px 10px 50px black;
+    border-radius: 15px;
+    
+}
+
+#clientTable tr{
+    background-color: #49759cad;
+    border-radius: 10px;
+}
+/*estilo especifico para el index*/
+
+#headerName{
+    color: #F2CB05;
+    text-align: center;
+    font-family: 'Kanit', Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    -webkit-text-stroke: 3.5px #8C6A03;
+    font-size: 70px;
+
+    border: solid 5px #030d16;
+    background-color: #051829;
+    border-radius: 15px;
+    box-shadow: 20px 40px 50px black;
+    margin: 0 2% 5% 2%;
+}
+
+.buttons {
+    background-color: #050c1696;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Kanit',Arial, Helvetica, sans-serif;
+    font-style: oblique;
+    margin: 2% 40% 0 40%;
+    border-radius: 100px 30px;
+    border: 2px inset #030d16;
+    box-shadow: 20px 40px 50px black;
+}
+
+.a{
+    color: #F2CB05;
+    padding: auto;
+    text-decoration: none;
+    -webkit-text-stroke: 1px #5c4602;
+}
+
+#gif{
+    margin: 0 20% 0 35%;
+}
+
+
+
+
